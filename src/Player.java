@@ -9,8 +9,7 @@ public class Player {
     {
         symbol = sym;
     }
-    public String getSymbol()
-    {
+    public String getSymbol() {
         return symbol;
     }
     public boolean getTurn(){

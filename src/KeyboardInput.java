@@ -5,7 +5,6 @@ public class KeyboardInput
     public static char readChar(String string_for_user)
     {
         char c = ' ';
-
         InputStreamReader keyboardInput = new InputStreamReader(System.in);
         try
         {	System.out.println(string_for_user);
@@ -26,8 +25,15 @@ public class KeyboardInput
 
         BufferedReader keyboardInput = new BufferedReader(new InputStreamReader(System.in));
         try
-        {	System.out.println(string_for_user);
+        {
+            System.out.println(string_for_user);
             s = keyboardInput.readLine();
+            while(!s.equals("A") && !s.equals("B") && !s.equals("C") ){
+                System.out.println("Wrong input. Try again.");
+                System.out.println(string_for_user);
+                s = keyboardInput.readLine();
+
+            }
         }
         catch (Exception e)
         {
@@ -45,10 +51,17 @@ public class KeyboardInput
 
         BufferedReader keyboardInput = new BufferedReader(new InputStreamReader(System.in));
         try
-        {	System.out.println(string_for_user);
+        {
+            System.out.println(string_for_user);
             s = keyboardInput.readLine();
-            //System.out.println("Nacital som " + s);
+            while(!s.equals("1") && !s.equals("2") && !s.equals("3")){
+                System.out.println("Wrong input. Try again.");
+                System.out.println(string_for_user);
+                s = keyboardInput.readLine();
+
+            }
             n = Integer.parseInt(s);
+
         }
         catch (Exception e)
         {
@@ -68,7 +81,6 @@ public class KeyboardInput
         try
         {	System.out.println(string_for_user);
             s = keyboardInput.readLine();
-            //System.out.println("Nacital som " + s);
             x = Double.parseDouble(s);
         }
         catch (Exception e)
