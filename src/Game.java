@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Game {
     public static void main(String[] args) {
@@ -17,20 +16,27 @@ public class Game {
         player2.setNumber(2);
 
         PlayerMovement move = new PlayerMovement();
-        PressEnter enter = new PressEnter();
+        PressToContinue key = new PressToContinue();
         KeyboardInput input = new KeyboardInput();
 
-        int freeSpots = 9;
+        int freeSpots = 9; //for draw
         boolean gameOver = false;
 
-        System.out.println("\n***TIC TAC TOE***");
-        System.out.println("\nHere will be rules");
+        System.out.println("___________________________________________________________________");
+        System.out.println("                        ***TIC TAC TOE***");
+        System.out.println("___________________________________________________________________");
         System.out.println("\n*GAME BOARD*");
         System.out.println(Arrays.deepToString(gameBoard.getBoard()).replace("], ", "\n")
                 .replace("]", "")
                 .replace("[", "")
                 .replace(",", ""));
-     //   enter.pressEnter();
+
+        if(key.pressRforRules() == true){
+            System.out.println("\n*RULES OF THE GAME*");
+            System.out.println("BLABLABLA");
+        }
+
+        System.out.println("\n*THE GAME BEGINS*");
 
         //assigning symbols to players
         player1.setSymbol("X");
@@ -66,7 +72,7 @@ public class Game {
                             .replace("]", "")
                             .replace("[", "")
                             .replace(",", ""));
-                    freeSpots--;
+                    freeSpots--; //substract from free spots
 
                     //check if current player won
                     if(move.playerWin(player.getSymbol())){
@@ -90,7 +96,7 @@ public class Game {
                         System.out.println("*NEW SYMBOLS OF EACH PLAYER*");
                         System.out.println("Player 1: " + player1.getSymbol());
                         System.out.println("Player 2: " + player2.getSymbol());
-                        enter.pressEnter();
+                        key.pressEnter();
                     }
 
                     //check draw
@@ -115,7 +121,7 @@ public class Game {
                         System.out.println("*NEW SYMBOLS OF EACH PLAYER*");
                         System.out.println("Player 1: " + player1.getSymbol());
                         System.out.println("Player 2: " + player2.getSymbol());
-                        enter.pressEnter();
+                        key.pressEnter();
                     }
                 }
             }
