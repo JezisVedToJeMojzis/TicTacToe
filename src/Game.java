@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Game {
     public static void main(String[] args) {
-      //  Board gameBoard = new Board();
+        Board gameBoard = new Board();
         Player player1 = new Player();
         Player player2 = new Player();
 
@@ -21,7 +21,12 @@ public class Game {
 
         System.out.println("\n***TIC TAC TOE***");
         System.out.println("\nHere will be rules");
-        enter.pressEnter();
+        System.out.println("\n*GAME BOARD*");
+        System.out.println(Arrays.deepToString(gameBoard.getBoard()).replace("], ", "\n")
+                .replace("]", "")
+                .replace("[", "")
+                .replace(",", ""));
+     //   enter.pressEnter();
 
         //assigning symbols to players
         player1.setSymbol("X");
@@ -30,7 +35,7 @@ public class Game {
         System.out.println("\n*SYMBOLS OF EACH PLAYER*");
         System.out.println("Player 1: " + player1.getSymbol());
         System.out.println("Player 2: " + player2.getSymbol());
-        enter.pressEnter();
+//        enter.pressEnter();
 
         //player 1 always begins (because of switching logic player 2 needs to be true)
         player2.setTurn(true);
@@ -69,7 +74,11 @@ public class Game {
 
                     //check if current player won
                     if(move.playerWin(player.getSymbol())){
-                        System.out.println("\n*PLAYER " + player1.getSymbol() + " WON*\n");
+                        System.out.println("\n*PLAYER " + player.getSymbol() + " WON*\n");
+                        player.addWin();
+                        System.out.println("\n*SCORE BOARD*");
+                        System.out.println("Player 1: " + player1.getWins());
+                        System.out.println("Player 2: " + player2.getWins());
 
                         //switch symbols of players
                         if(player1.getSymbol() == "X"){
