@@ -27,4 +27,13 @@ public class PressToContinue {
         }
         return playPvP;
     }
+
+    public Boolean pressQtoQuit(){
+        Boolean quitGame = false;
+        String pressedButton = input.readStringToManageGameLogic("\nPress Q to quit the game...\nPress anything else to continue playing...");
+        if (pressedButton.equals("Q") || pressedButton.equals("q")){
+            quitGame = true;
+        }
+        return quitGame;
+    }
 }

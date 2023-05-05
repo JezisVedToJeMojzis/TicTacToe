@@ -38,7 +38,7 @@ public class PvPMode {
         player2.setTurn(true);
 
         //game logic
-        while (!gameOver) {
+        while (gameOver != true) {
             //switch player turns
             if (player1.getTurn() == true) {
                 player2.setTurn(true);
@@ -47,7 +47,6 @@ public class PvPMode {
                 player1.setTurn(true);
                 player2.setTurn(false);
             }
-
             for (Player player : players) {
                 if (player.getTurn() == true) {
                     System.out.println("\n___________________________________________________________________\n");
@@ -67,6 +66,11 @@ public class PvPMode {
                         System.out.println("\n*SCORE BOARD*");
                         System.out.println("Player 1: " + player1.getWins());
                         System.out.println("Player 2: " + player2.getWins());
+                        if(key.pressQtoQuit() == true){
+                            System.out.println("\n*SEE YOU SOON*");
+                            gameOver = true;
+                            break;
+                        }
 
                         //switch symbols of players
                         if (player1.getSymbol() == "X") {
@@ -81,6 +85,7 @@ public class PvPMode {
                         System.out.println("*NEW SYMBOLS OF EACH PLAYER*");
                         System.out.println("Player 1: " + player1.getSymbol());
                         System.out.println("Player 2: " + player2.getSymbol());
+                        freeSpots = 9;
                         key.pressEnter();
                     }
 
@@ -90,8 +95,11 @@ public class PvPMode {
                         System.out.println("\n*SCORE BOARD*");
                         System.out.println("Player 1: " + player1.getWins());
                         System.out.println("Player 2: " + player2.getWins());
-                        freeSpots = 9;
-
+                        if(key.pressQtoQuit() == true){
+                            System.out.println("\n*SEE YOU SOON*");
+                            gameOver = true;
+                            break;
+                        }
                         //switch symbols of players
                         if (player1.getSymbol() == "X") {
                             player1.setSymbol("O");
@@ -105,15 +113,11 @@ public class PvPMode {
                         System.out.println("*NEW SYMBOLS OF EACH PLAYER*");
                         System.out.println("Player 1: " + player1.getSymbol());
                         System.out.println("Player 2: " + player2.getSymbol());
+                        freeSpots = 9;
                         key.pressEnter();
                     }
                 }
             }
-        }
-
-        //turn off application
-        if(gameOver){
-            System.out.println("END");
         }
     }
 }
