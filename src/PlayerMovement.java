@@ -3,13 +3,19 @@ public class PlayerMovement {
     KeyboardInput input = new KeyboardInput();
 
     Boolean gameOver = false;
+
     public PlayerMovement(){
 
     }
 
-    public String[][] occupySpot(String row, int column, String symbol){
+    public String[][] occupySpot(String pSymbol, int pNumber){
 
-        //check if chosen spot is not already accupied
+         String row = input.readString("Row:");
+         System.out.println(row);
+         int column = input.readInt("Column:");
+         System.out.println(column);
+
+        //check if chosen spot is not already occupied
         while(gameBoard.isOccupied(row,column)){
             System.out.println("This spot is already occupied. Try again.");
             row = input.readString("Row:");
@@ -19,13 +25,12 @@ public class PlayerMovement {
         }
 
         //rewrite spot based on players symbol
-        gameBoard.setBoard(row,column, symbol);
-
+        gameBoard.setBoard(row,column, pSymbol);
+        System.out.println("Player " + pNumber + " (" + pSymbol + ")" + " occupied: " + row + column);
         return gameBoard.getBoard();
     }
 
     public Boolean playerWin(String playerSymbol) {
-       // Boolean gameOver = false;
         String[][] getBoard = gameBoard.getBoard();
         String[][] currentBoard = new String[][]{
                 {"□","□","□"},
