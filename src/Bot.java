@@ -1,13 +1,12 @@
-public class Player {
+public class Bot {
     private String symbol;
     private boolean turn;
     private int wins;
-    private int number;
-    public Player(){
+
+    public Bot(){
         symbol = " ";
         turn = false;
         wins = 0;
-        number = 1;
     }
     public void setSymbol(String sym)
     {
@@ -39,11 +38,4 @@ public class Player {
         this.wins = 0;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
 }

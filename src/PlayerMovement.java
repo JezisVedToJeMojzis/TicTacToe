@@ -2,8 +2,6 @@ public class PlayerMovement {
     Board gameBoard = new Board();
     KeyboardInput input = new KeyboardInput();
 
-    Boolean gameOver = false;
-
     public PlayerMovement(){
 
     }
@@ -26,7 +24,7 @@ public class PlayerMovement {
 
         //rewrite spot based on players symbol
         gameBoard.setBoard(row,column, pSymbol);
-        System.out.println("Player " + pNumber + " (" + pSymbol + ")" + " occupied: " + row + column);
+        System.out.println("\nPlayer " + pNumber + " (" + pSymbol + ")" + " occupied: " + row + column);
         return gameBoard.getBoard();
     }
 
@@ -63,7 +61,6 @@ public class PlayerMovement {
                     //row win
                     if(countRowSymbols == 3){
                         gameBoard.refreshBoard();
-                        //return "There are 3 same symbols in one row. Player " + playerSymbol + " wins.";
                         return true;
                     }
                 }
@@ -79,7 +76,6 @@ public class PlayerMovement {
                     //column win
                     if(countColumnSymbols == 3){
                         gameBoard.refreshBoard();
-                        //return "There are 3 same symbols in one column. Player " + playerSymbol + " wins.";
                         return true;
                     }
                 }
@@ -93,7 +89,6 @@ public class PlayerMovement {
             //diagonal from top left to right bottom win
             if(countDiagonalSymbolsFromLeft == 3){
                 gameBoard.refreshBoard();
-                //return "There are 3 same symbols in diagonal. Player " + playerSymbol + " wins.";
                 return true;
             }
         }
@@ -102,7 +97,6 @@ public class PlayerMovement {
                 //diagonal from top left to right bottom win
             if(countDiagonalSymbolsFromLeft == 3){
                 gameBoard.refreshBoard();
-                //return "There are 3 same symbols in diagonal. Player " + playerSymbol + " wins.";
                 return true;
             }
         }
@@ -111,7 +105,6 @@ public class PlayerMovement {
                 //diagonal from top left to right bottom win
             if(countDiagonalSymbolsFromLeft == 3){
                 gameBoard.refreshBoard();
-                //return "There are 3 same symbols in diagonal. Player " + playerSymbol + " wins.";
                 return true;
             }
         }
@@ -122,7 +115,6 @@ public class PlayerMovement {
             //diagonal from top right to left bottom win
             if(countDiagonalSymbolsFromRight == 3){
                 gameBoard.refreshBoard();
-                //return "There are 3 same symbols in diagonal. Player " + playerSymbol + " wins.";
                 return true;
             }
         }
@@ -131,7 +123,6 @@ public class PlayerMovement {
             //diagonal from top right to left bottom win
             if(countDiagonalSymbolsFromRight == 3){
                 gameBoard.refreshBoard();
-                //return "There are 3 same symbols in diagonal. Player " + playerSymbol + " wins.";
                 return true;
             }
         }
@@ -140,12 +131,10 @@ public class PlayerMovement {
             //diagonal from top right to left bottom win
             if(countDiagonalSymbolsFromRight == 3){
                 gameBoard.refreshBoard();
-                //return "There are 3 same symbols in diagonal. Player " + playerSymbol + " wins.";
                 return true;
 
             }
         }
-        //return "\n*NO ONE WON SO FAR*\n";
         return false;
     }
 }
