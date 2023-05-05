@@ -14,11 +14,7 @@ public class PvPMode {
 
     public void startGame() {
         initialSetup();
-        System.out.println("\n********************************************************************\n");
-        System.out.println("                          *** ROUND: " + rounds + " ***");
-        printSymbolsOfEachPlayer();
-        System.out.println("\n********************************************************************\n");
-
+        printRound();
         //game logic
         while (gameOver != true) {
             switchTurns();
@@ -136,10 +132,7 @@ public class PvPMode {
         freeSpots = 9;
         rounds++;
         switchSymbols();
-        System.out.println("\n*******************************************************************\n");
-        System.out.println("                      *** ROUND: " + rounds + " ***");
-        printSymbolsOfEachPlayer();
-        System.out.println("\n*******************************************************************\n");
+        printRound();
     }
 
     public void printScoreBoard(){
@@ -152,5 +145,12 @@ public class PvPMode {
         System.out.println("\n                      *SYMBOLS OF EACH PLAYER*");
         System.out.println("                            Player 1: " + player1.getSymbol());
         System.out.println("                            Player 2: " + player2.getSymbol());
+    }
+
+    public void printRound(){
+        System.out.println("\n*******************************************************************\n");
+        System.out.println("                          *** ROUND: " + rounds + " ***");
+        printSymbolsOfEachPlayer();
+        System.out.println("\n*******************************************************************\n");
     }
 }
