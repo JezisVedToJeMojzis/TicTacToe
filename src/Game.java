@@ -27,6 +27,7 @@ public class Game {
             System.out.println("\n*THE GAME BEGINS*");
 
             PvEMode game = new PvEMode();
+            game.startGame();
         }
 
 

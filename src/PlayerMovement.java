@@ -1,7 +1,8 @@
 public class PlayerMovement {
     Board gameBoard = new Board();
     KeyboardInput input = new KeyboardInput();
-
+    private int countRowSymbols = 0;
+    private int countColumnSymbols = 0;
     public PlayerMovement(){
 
     }
@@ -45,43 +46,17 @@ public class PlayerMovement {
             i++;
         }
 
-        int n = 3;
-        int countRowSymbols = 0;
-        int countColumnSymbols = 0;
-        int countDiagonalSymbolsFromLeft = 0;//diagonal from top left to right bottom
+        if(checkRow(playerSymbol, currentBoard)){
+            gameBoard.refreshBoard();
+            return true;
+        }
+        if(checkColumn(playerSymbol, currentBoard)){
+            gameBoard.refreshBoard();
+            return true;
+        }
+
+        int countDiagonalSymbolsFromLeft = 0; //diagonal from top right to left bottom
         int countDiagonalSymbolsFromRight = 0; //diagonal from top right to left bottom
-        i=0;
-        j=0;
-
-        //check row win situation
-        for(i = 0; i < n; i++){
-            for(j = 0; j < n; j++){
-                if(currentBoard[i][j].equals(playerSymbol)){
-                    countRowSymbols++;
-                    //row win
-                    if(countRowSymbols == 3){
-                        gameBoard.refreshBoard();
-                        return true;
-                    }
-                }
-            }
-            countRowSymbols = 0;
-        }
-
-        //check column win situation
-        for(j = 0; j < n; j++){
-            for(i = 0; i < n; i++){
-                if(currentBoard[i][j].equals(playerSymbol)){
-                    countColumnSymbols++;
-                    //column win
-                    if(countColumnSymbols == 3){
-                        gameBoard.refreshBoard();
-                        return true;
-                    }
-                }
-            }
-            countColumnSymbols = 0;
-        }
 
         //diagonal from top left to right bottom
         if(currentBoard[0][0].equals(playerSymbol)){
@@ -94,7 +69,7 @@ public class PlayerMovement {
         }
         if(currentBoard[1][1].equals(playerSymbol)){
             countDiagonalSymbolsFromLeft++;
-                //diagonal from top left to right bottom win
+            //diagonal from top left to right bottom win
             if(countDiagonalSymbolsFromLeft == 3){
                 gameBoard.refreshBoard();
                 return true;
@@ -102,7 +77,7 @@ public class PlayerMovement {
         }
         if(currentBoard[2][2].equals(playerSymbol)){
             countDiagonalSymbolsFromLeft++;
-                //diagonal from top left to right bottom win
+            //diagonal from top left to right bottom win
             if(countDiagonalSymbolsFromLeft == 3){
                 gameBoard.refreshBoard();
                 return true;
@@ -135,7 +110,95 @@ public class PlayerMovement {
 
             }
         }
+
+
+
+//        else if(checkDiagonalFromTopLeftToRightBottom(0,0,playerSymbol, currentBoard)){
+//            gameBoard.refreshBoard();
+//            return true;
+//        }
+//        else if(checkDiagonalFromTopLeftToRightBottom(1,1,playerSymbol, currentBoard)){
+//            gameBoard.refreshBoard();
+//            return true;
+//        }
+//        else if(checkDiagonalFromTopLeftToRightBottom(2,2,playerSymbol, currentBoard)){
+//            gameBoard.refreshBoard();
+//            return true;
+//        }
+//
+//
+//
+//        else if(checkDiagonalFromTopRightToLeftBottom(0,2,playerSymbol,currentBoard)){
+//            gameBoard.refreshBoard();
+//            return true;
+//        }
+//        else if(checkDiagonalFromTopRightToLeftBottom(1,1,playerSymbol,currentBoard)){
+//            gameBoard.refreshBoard();
+//            return true;
+//        }
+//        else if(checkDiagonalFromTopRightToLeftBottom(2,0,playerSymbol,currentBoard)){
+//            gameBoard.refreshBoard();
+//            return true;
+//        }
+
+
         return false;
     }
+
+    public boolean checkRow(String playerSymbol, String[][] currentBoard){
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(currentBoard[i][j].equals(playerSymbol)){
+                    countRowSymbols++;
+                    //row win
+                    if(countRowSymbols == 3){
+                        return true;
+                    }
+                }
+            }
+            countRowSymbols = 0;
+        }
+        return false;
+    }
+
+    public boolean checkColumn(String playerSymbol, String[][] currentBoard){
+        for(int j = 0; j < 3; j++){
+            for(int i = 0; i < 3; i++){
+                if(currentBoard[i][j].equals(playerSymbol)){
+                    countColumnSymbols++;
+                    //column win
+                    if(countColumnSymbols == 3){
+                        return true;
+                    }
+                }
+            }
+            countColumnSymbols = 0;
+        }
+        return false;
+    }
+
+//    public boolean checkDiagonalFromTopLeftToRightBottom(int row, int column, String playerSymbol, String[][] currentBoard){
+//
+//        if(currentBoard[row][column].equals(playerSymbol)){
+//          countDiagonalSymbolsFromLeft++;
+//            //diagonal from top left to right bottom win
+//            if(countDiagonalSymbolsFromLeft == 3){
+//                return true;
+//            }
+//        }
+//
+//        return false;
+//    }
+
+//    public boolean checkDiagonalFromTopRightToLeftBottom(int row, int column, String playerSymbol, String[][] currentBoard){
+//        if(currentBoard[row][column].equals(playerSymbol)){
+//            countDiagonalSymbolsFromRight++;
+//            //diagonal from top left to right bottom win
+//            if(countDiagonalSymbolsFromRight == 3){
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }
 

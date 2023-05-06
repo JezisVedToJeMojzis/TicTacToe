@@ -89,7 +89,6 @@ public class PvPMode {
         return won;
     }
 
-
     public void initialSetup(){
         players.add(player1);
         players.add(player2);
@@ -136,9 +135,11 @@ public class PvPMode {
     }
 
     public void printScoreBoard(){
-        System.out.println("\n                           *SCORE BOARD*");
-        System.out.println("                              Player 1: " + player1.getWins());
-        System.out.println("                              Player 2: " + player2.getWins());
+        System.out.println("\n*******************************************************************\n");
+        System.out.println("                            *SCORE BOARD*");
+        System.out.println("                             Player 1: " + player1.getWins());
+        System.out.println("                             Player 2: " + player2.getWins());
+        System.out.println("\n*******************************************************************\n");
     }
 
     public void printSymbolsOfEachPlayer(){
