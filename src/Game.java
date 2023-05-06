@@ -36,7 +36,11 @@ public class Game {
     public static void gameRules(){
         System.out.println("\n********************************************************************\n");
         System.out.println("                       *** RULES OF THE GAME ***");
-        System.out.println("                The rules of the game are simple and.....");
+        System.out.println("                The rules of the game are simple.");
+        System.out.println("               1. Each player can choose a position by selecting row as A, B or C and column as 1, 2 or 3");
+        System.out.println("               2. Players can only select a position that is not occupied.");
+        System.out.println("               3. The first player to get three of their symbols in a row (horizontally, vertically, or diagonally) wins the game.");
+        System.out.println("               4. If all the positions are filled and no player won than game is considered as 'Draw'.");
         System.out.println("\n********************************************************************\n");
     }
 
