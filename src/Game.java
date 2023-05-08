@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
+    static Random rand = new Random();
     static Board gameBoard = new Board();
     static PressToContinue key = new PressToContinue();
     public static void main(String[] args) {
-
         gameIntroduction();
         //show rules
         if(key.pressRforRules()){
@@ -25,12 +26,9 @@ public class Game {
         else{
             System.out.println("\n*You have chosen to play PvE mode*");
             System.out.println("\n*THE GAME BEGINS*");
-
             PvEMode game = new PvEMode();
             game.startGame();
         }
-
-
     }
 
     public static void gameRules(){

@@ -1,27 +1,24 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
+import java.util.concurrent.TimeUnit;
 public class PvEMode {
     PressToContinue key = new PressToContinue();
     Player player = new Player();
-    PlayerMovement playerMove = new PlayerMovement();
     Bot bot = new Bot();
-    BotMovement botMove = new BotMovement();
-    List<Player> players = new ArrayList<Player>();
+    Movement move = new Movement();
     int freeSpots = 9; //for draw
     boolean gameOver = false;
     int rounds = 1;
 
-    public void startGame(){
+    public void startGame() {
         initialSetup();
         printRound();
 
-        while (gameOver != true) {
+        while (!gameOver) {
             switchTurns();
-            if(player.getTurn() == true){
+            if(player.getTurn()){
                 playerMove(player);
                 freeSpots--; //substract from free spots
+                //check win
                 if(playerWon(player)){
                     player.addWin();
                     printScoreBoard();
@@ -43,9 +40,16 @@ public class PvEMode {
                 }
             }
 
-            if(bot.getTurn() == true){
+            if(bot.getTurn()){
+                try {
+                    Thread.sleep(1000);
+                }
+                catch(InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                }
                 botMove(bot);
                 freeSpots--;
+                //check win
                 if(botWon(bot)){
                     bot.addWin();
                     printScoreBoard();
@@ -74,7 +78,7 @@ public class PvEMode {
     public boolean playerWon(Player player){
         boolean won = false;
         //check if current player won
-        if (playerMove.playerWin(player.getSymbol())) {
+        if (move.winMove(player.getSymbol())) {
             System.out.println("\n*PLAYER " + player.getNumber() + " (" + player.getSymbol() + ")" + " WON*\n");
             won = true;
             return won;
@@ -85,8 +89,8 @@ public class PvEMode {
     public boolean botWon(Bot bot){//ADJUST
         boolean won = false;
         //check if current player won
-        if (playerMove.playerWin(bot.getSymbol())) {
-            System.out.println("\n*PLAYER (" + bot.getSymbol() + ")" + " WON*\n");
+        if (move.winMove(bot.getSymbol())) {
+            System.out.println("\n*Bot (" + bot.getSymbol() + ")" + " WON*\n");
             won = true;
             return won;
         }
@@ -122,12 +126,17 @@ public class PvEMode {
 
     public void botMove(Bot bot){
         System.out.println("\nBot " + " (" + bot.getSymbol() + ")" + " turn.");
+
+        System.out.println(Arrays.deepToString(move.botOccupySpot(bot.getSymbol())).replace("], ", "\n")
+                .replace("]", "")
+                .replace("[", "")
+                .replace(",", ""));
     }
     public void playerMove(Player player){
         System.out.println("\nPlayer " + player.getNumber() + " (" + player.getSymbol() + ")" + " turn.");
 
         //occupying spot + printing current state of game board
-        System.out.println(Arrays.deepToString(playerMove.occupySpot(player.getSymbol(), player.getNumber())).replace("], ", "\n")
+        System.out.println(Arrays.deepToString(move.playerOccupySpot(player.getSymbol(), player.getNumber())).replace("], ", "\n")
                 .replace("]", "")
                 .replace("[", "")
                 .replace(",", ""));

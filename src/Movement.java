@@ -1,13 +1,13 @@
-public class PlayerMovement {
+import java.util.Random;
+public class Movement {
     Board gameBoard = new Board();
+    Random rand = new Random();
     KeyboardInput input = new KeyboardInput();
-    private int countRowSymbols = 0;
-    private int countColumnSymbols = 0;
-    public PlayerMovement(){
+    public Movement(){
 
     }
 
-    public String[][] occupySpot(String pSymbol, int pNumber){
+    public String[][] playerOccupySpot(String pSymbol, int pNumber){
 
          String row = input.readString("Row:");
          System.out.println(row);
@@ -29,13 +29,34 @@ public class PlayerMovement {
         return gameBoard.getBoard();
     }
 
-    public Boolean playerWin(String playerSymbol) {
+    public String[][] botOccupySpot(String bSymbol){
+        char r = (char) ('A' + rand.nextInt(3)); // A-C
+        String row = "" + r;
+        int column = rand.nextInt(3); // 0-2
+        column++; //to avoid 0
+
+        //check if chosen spot is not already occupied
+        while(gameBoard.isOccupied(row,column)){
+            r = (char) ('A' + rand.nextInt(3)); // A-C
+            row = "" + r;
+            column = rand.nextInt(3); // 0-2
+            column++; //to avoid 0
+        }
+
+        //rewrite spot based on players symbol
+        gameBoard.setBoard(row,column, bSymbol);
+        System.out.println("\nBot " + " (" + bSymbol + ")" + " occupied: " + row + column);
+        return gameBoard.getBoard();
+    }
+
+    public Boolean winMove(String playerSymbol) {
         String[][] getBoard = gameBoard.getBoard();
         String[][] currentBoard = new String[][]{
                 {"□","□","□"},
                 {"□","□","□"},
                 {"□","□","□"}
         };
+
         int i=0,j=0;
         for (int a = 1; a < 4; a++) {
             for (int b = 1; b < 4; b++) {
@@ -54,7 +75,14 @@ public class PlayerMovement {
             gameBoard.refreshBoard();
             return true;
         }
+        if(checkDiagonal(playerSymbol, currentBoard)){
+            gameBoard.refreshBoard();
+            return true;
+        }
+        return false;
+    }
 
+    public boolean checkDiagonal(String playerSymbol, String[][] currentBoard){
         int countDiagonalSymbolsFromLeft = 0; //diagonal from top right to left bottom
         int countDiagonalSymbolsFromRight = 0; //diagonal from top right to left bottom
 
@@ -110,42 +138,12 @@ public class PlayerMovement {
 
             }
         }
-
-
-
-//        else if(checkDiagonalFromTopLeftToRightBottom(0,0,playerSymbol, currentBoard)){
-//            gameBoard.refreshBoard();
-//            return true;
-//        }
-//        else if(checkDiagonalFromTopLeftToRightBottom(1,1,playerSymbol, currentBoard)){
-//            gameBoard.refreshBoard();
-//            return true;
-//        }
-//        else if(checkDiagonalFromTopLeftToRightBottom(2,2,playerSymbol, currentBoard)){
-//            gameBoard.refreshBoard();
-//            return true;
-//        }
-//
-//
-//
-//        else if(checkDiagonalFromTopRightToLeftBottom(0,2,playerSymbol,currentBoard)){
-//            gameBoard.refreshBoard();
-//            return true;
-//        }
-//        else if(checkDiagonalFromTopRightToLeftBottom(1,1,playerSymbol,currentBoard)){
-//            gameBoard.refreshBoard();
-//            return true;
-//        }
-//        else if(checkDiagonalFromTopRightToLeftBottom(2,0,playerSymbol,currentBoard)){
-//            gameBoard.refreshBoard();
-//            return true;
-//        }
-
-
         return false;
     }
 
     public boolean checkRow(String playerSymbol, String[][] currentBoard){
+        int countRowSymbols = 0;
+
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
                 if(currentBoard[i][j].equals(playerSymbol)){
@@ -162,6 +160,8 @@ public class PlayerMovement {
     }
 
     public boolean checkColumn(String playerSymbol, String[][] currentBoard){
+        int countColumnSymbols = 0;
+
         for(int j = 0; j < 3; j++){
             for(int i = 0; i < 3; i++){
                 if(currentBoard[i][j].equals(playerSymbol)){
@@ -176,29 +176,5 @@ public class PlayerMovement {
         }
         return false;
     }
-
-//    public boolean checkDiagonalFromTopLeftToRightBottom(int row, int column, String playerSymbol, String[][] currentBoard){
-//
-//        if(currentBoard[row][column].equals(playerSymbol)){
-//          countDiagonalSymbolsFromLeft++;
-//            //diagonal from top left to right bottom win
-//            if(countDiagonalSymbolsFromLeft == 3){
-//                return true;
-//            }
-//        }
-//
-//        return false;
-//    }
-
-//    public boolean checkDiagonalFromTopRightToLeftBottom(int row, int column, String playerSymbol, String[][] currentBoard){
-//        if(currentBoard[row][column].equals(playerSymbol)){
-//            countDiagonalSymbolsFromRight++;
-//            //diagonal from top left to right bottom win
-//            if(countDiagonalSymbolsFromRight == 3){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 }
 

@@ -6,7 +6,7 @@ public class PvPMode {
     PressToContinue key = new PressToContinue();
     Player player1 = new Player();
     Player player2 = new Player();
-    PlayerMovement move = new PlayerMovement();
+    Movement move = new Movement();
     List<Player> players = new ArrayList<Player>();
     int freeSpots = 9; //for draw
     boolean gameOver = false;
@@ -52,7 +52,7 @@ public class PvPMode {
         System.out.println("\nPlayer " + player.getNumber() + " (" + player.getSymbol() + ")" + " turn.");
 
         //occupying spot + printing current state of game board
-        System.out.println(Arrays.deepToString(move.occupySpot(player.getSymbol(), player.getNumber())).replace("], ", "\n")
+        System.out.println(Arrays.deepToString(move.playerOccupySpot(player.getSymbol(), player.getNumber())).replace("], ", "\n")
                 .replace("]", "")
                 .replace("[", "")
                 .replace(",", ""));
@@ -81,7 +81,7 @@ public class PvPMode {
     public boolean playerWon(Player player){
         boolean won = false;
         //check if current player won
-        if (move.playerWin(player.getSymbol())) {
+        if (move.winMove(player.getSymbol())) {
             System.out.println("\n*PLAYER " + player.getNumber() + " (" + player.getSymbol() + ")" + " WON*\n");
             won = true;
             return won;
