@@ -77,7 +77,7 @@ public class PvEMode {
 
     public boolean playerWon(Player player){
         boolean won = false;
-        //check if current player won
+        //check if player won
         if (move.winMove(player.getSymbol())) {
             System.out.println("\n*PLAYER " + player.getNumber() + " (" + player.getSymbol() + ")" + " WON*\n");
             won = true;
@@ -86,9 +86,9 @@ public class PvEMode {
         return won;
     }
 
-    public boolean botWon(Bot bot){//ADJUST
+    public boolean botWon(Bot bot){
         boolean won = false;
-        //check if current player won
+        //check if bot won
         if (move.winMove(bot.getSymbol())) {
             System.out.println("\n*Bot (" + bot.getSymbol() + ")" + " WON*\n");
             won = true;
