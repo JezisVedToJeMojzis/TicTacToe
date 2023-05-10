@@ -33,9 +33,4 @@ public class Bot {
     public void addWin(){
         this.wins++;
     }
-
-    public void resetWins(){
-        this.wins = 0;
-    }
-
 }
