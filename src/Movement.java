@@ -9,17 +9,17 @@ public class Movement {
 
     public String[][] playerOccupySpot(String pSymbol, int pNumber){
 
-         String row = input.readString("Row:");
+         String row = input.readString("Row (A,B,C):");
          System.out.println(row);
-         int column = input.readInt("Column:");
+         int column = input.readInt("Column (1,2,3):");
          System.out.println(column);
 
         //check if chosen spot is not already occupied
         while(gameBoard.isOccupied(row,column)){
             System.out.println("This spot is already occupied. Try again.");
-            row = input.readString("Row:");
+            row = input.readString("Row (A,B,C):");
             System.out.println(row);
-            column = input.readInt("Column:");
+            column = input.readInt("Column (1,2,3):");
             System.out.println(column);
         }
 

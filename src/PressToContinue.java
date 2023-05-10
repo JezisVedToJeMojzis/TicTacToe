@@ -12,7 +12,7 @@ public class PressToContinue {
 
    public Boolean pressRforRules(){
         Boolean showRules = false;
-        String pressedButton = input.readStringToManageGameLogic("\nPress R to show the rules...\nPress anything else to start the game...");
+        String pressedButton = input.readStringToManageGameLogic("\nPress R and then Enter to show the rules...\nPress only Enter to start the game...");
         if (pressedButton.equals("R") || pressedButton.equals("r")){
             showRules = true;
         }
@@ -21,7 +21,7 @@ public class PressToContinue {
 
     public Boolean pressPforPvP(){
         Boolean playPvP = false;
-        String pressedButton = input.readStringToManageGameLogic("\nPress P to play PvP mode...\nPress anything else to play PvE mode...");
+        String pressedButton = input.readStringToManageGameLogic("\nPress P and then Enter to play PvP mode...\nPress only Enter to play PvE mode...");
         if (pressedButton.equals("P") || pressedButton.equals("p")){
             playPvP = true;
         }
@@ -30,7 +30,7 @@ public class PressToContinue {
 
     public Boolean pressQtoQuit(){
         Boolean quitGame = false;
-        String pressedButton = input.readStringToManageGameLogic("\nPress Q to quit the game...\nPress anything else to continue playing...");
+        String pressedButton = input.readStringToManageGameLogic("\nPress Q and then Enter to quit the game...\nPress only Enter to continue playing...");
         if (pressedButton.equals("Q") || pressedButton.equals("q")){
             quitGame = true;
         }
