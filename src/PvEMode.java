@@ -41,12 +41,6 @@ public class PvEMode {
             }
 
             if(bot.getTurn()){
-                try {
-                    Thread.sleep(1000);
-                }
-                catch(InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                }
                 botMove(bot);
                 freeSpots--;
                 //check win
@@ -126,7 +120,12 @@ public class PvEMode {
 
     public void botMove(Bot bot){
         System.out.println("\nBot " + " (" + bot.getSymbol() + ")" + " turn.");
-
+        try {
+            Thread.sleep(1000);
+        }
+        catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
         System.out.println(Arrays.deepToString(move.botOccupySpot(bot.getSymbol())).replace("], ", "\n")
                 .replace("]", "")
                 .replace("[", "")
