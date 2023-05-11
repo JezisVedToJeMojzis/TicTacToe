@@ -31,8 +31,8 @@ public class Game {
         System.out.println("\n********************************************************************\n");
         System.out.println("                       *** RULES OF THE GAME ***");
         System.out.println("                   The rules of the game are simple:");
-        System.out.println(" 1. Each player can choose a position by selecting row as A, B or C (capital!)");
-        System.out.println("    and column as 1, 2 or 3");
+        System.out.println(" 1. Each player can choose a position by selecting row as A, B or C");
+        System.out.println("    (A,B,C must be capital letter!) and column as 1, 2 or 3");
         System.out.println(" 2. Players can only select a position that is not occupied.");
         System.out.println(" 3. The first player to get three of their symbols in a row ");
         System.out.println("    (horizontally, vertically, or diagonally) wins the game.");
