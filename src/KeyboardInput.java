@@ -57,7 +57,7 @@ public class KeyboardInput
         catch (Exception e)
         {
             System.out.println("Wrong input. Try again.");
-            s = readString(string_for_user);
+            s = readStringToManageGameLogic(string_for_user);
         }
 
         return s;
